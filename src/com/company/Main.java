@@ -18,7 +18,7 @@ public class Main {
         frame.add(panel);
         panel.setLayout(new GridLayout(10,10));
 
-        ImageIcon imageIcon = new ImageIcon("1.png");
+        ImageIcon imageIcon = new ImageIcon("images/1.png");
 
         JButton b = new JButton(imageIcon);
 //        b.setSize(50,  50);
@@ -30,33 +30,25 @@ public class Main {
 
 
 
-
-//        panel.remove(2);
-//        panel.add(new JButton(new ImageIcon("2.png")),2);
-
-
         Board board = new Board();
         board.showBoard();
 
-//        Ship ship = new Ship();
-//        ship.chooseOrientation();
-//
-//        ship.findHorizontalPlace(4);
-//
-//        ship.findVerticalPlace(3);
-//        ship.findHorizontalPlace(3);
-//
-//        ship.findHorizontalPlace(2);
-//        ship.findHorizontalPlace(2);
-//        ship.findVerticalPlace(2);
-//
-//        ship.findHorizontalPlace(1);
-//        ship.findVerticalPlace(1);
-//        ship.findHorizontalPlace(1);
-//        ship.findVerticalPlace(1);
 
         Ship ship = new Ship();
-        ship.build();
+
+        ship.build(4);
+
+        ship.build(3);
+        ship.build(3);
+
+        ship.build(2);
+        ship.build(2);
+        ship.build(2);
+
+        ship.build(1);
+        ship.build(1);
+        ship.build(1);
+        ship.build(1);
 
         board.showBoard();
 
@@ -69,10 +61,15 @@ public class Main {
                     str = "" + i + j;
                     index = Integer.parseInt(str);
                     panel.remove(index);
-                    panel.add(new JButton(new ImageIcon("2.png")), index);
+                    panel.add(new JButton(new ImageIcon("images/2.png")), index);
                 }
             }
         }
+
+        System.out.println();
+        ship.showPosition();
+
+//        frame.repaint();
 
 
     }
