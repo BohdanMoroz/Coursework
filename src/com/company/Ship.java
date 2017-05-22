@@ -7,8 +7,11 @@ import static com.company.Board.arr;
 public class Ship {
     public int counter = 0;
     public Random random = new Random();
-    public int i = 0;
-    public int j = 0;
+
+    public int i;
+    public int j;
+    public int buf;
+
     public int indexOfShip = 1;
     public int orientationInt;
 
@@ -23,7 +26,7 @@ public class Ship {
     String[] str = new String[10];
     int c = 0;
     public void savePosition() {
-        str[c++] = "" + start_arg + "    " + end_arg + "    " + j;
+        str[c++] = "" + indexOfShip + "|    " + start_arg + "    " + end_arg + "    " + j + "              " + orientationInt;
     }
     public void showPosition() {
         for (c = 0; c < 10; c++)
@@ -37,7 +40,7 @@ public class Ship {
     public void build(int number){
         for(;;) {
             generatePosition();
-//            generateOrientation();
+            generateOrientation();
             if (discoverSpace(number)) {
                 savePosition();
                 fillSpace();
@@ -47,25 +50,31 @@ public class Ship {
     }
 
     public void fillSpace() {
-        for (i = start_arg; i <= end_arg; i++) {
+        for (buf = start_arg; buf <= end_arg; buf++) {
             write();
         }
         indexOfShip++;
     }
 
+    public void write(){
+        getOrientation();
+        arr[i][j] = indexOfShip;
+    }
+
     public boolean discoverSpace(int number) {
         counter = 0;
-        origin_arg = i; // ??? *
-        for (; i < 10; i++) {
+
+        for (; buf < 10; buf++) {
             if (counter == 1)
-                start_arg = i-1;
+                start_arg = buf-1;
             if (counter == number) {
-                end_arg = i-1;
+                end_arg = buf-1;
                 return true;
             }
+            getOrientation();
             if(isAvailable()) {
                 counter++;
-                continue;
+                continue; // ???
             }
             else {
                 counter = 0;
@@ -74,9 +83,6 @@ public class Ship {
         return false;
     }
 
-    public void write(){
-        arr[i][j] = indexOfShip;
-    }
 
     public void generatePosition(){
         i = random.nextInt(10);
@@ -84,14 +90,23 @@ public class Ship {
     }
 
     public void generateOrientation() { // enum
-        orientationInt = random.nextInt(2);
+        orientationInt = random.nextInt(100);
+        if(orientationInt < 50)
+            buf = i;
+        else
+            buf = j;
+    }
+
+    public void getOrientation() {
+        if(orientationInt < 50)
+            i = buf;
+        else
+            j = buf;
     }
 
     public boolean isAvailable(){
         if (arr[i][j] != 0) // dot
             return false;
-
-
 
         if ((j-1 >= 0) && (arr[i][j-1] != 0) && (arr[i][j-1] != indexOfShip)) // left
             return false;
@@ -105,9 +120,6 @@ public class Ship {
         if ((i+1 <= 9) && (arr[i+1][j] != 0) && (arr[i+1][j] != indexOfShip)) // bottom
             return false;
 
-
-        // ???
-        // -----------------------------------------------------------------------------------------------------------
         if ((i-1 >= 0) && (j-1 >= 0) && (arr[i-1][j-1] != 0)) // left_top
             return false;
 
@@ -120,7 +132,6 @@ public class Ship {
         if ((i+1 <= 9) && (j+1 <= 9) && (arr[i+1][j+1] != 0)) // right_bottom
             return false;
 
-        // -----------------------------------------------------------------------------------------------------------
         return true;
     }
 }

@@ -66,8 +66,8 @@ public class Main {
             }
         }
 
-        System.out.println();
-        ship.showPosition();
+//        System.out.println();
+//        ship.showPosition();
 
 //        frame.repaint();
 
