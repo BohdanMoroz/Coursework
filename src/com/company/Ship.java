@@ -89,7 +89,9 @@ public class Ship {
         j = random.nextInt(10);
     }
 
-    public void generateOrientation() { // enum
+    //think to use enum
+    //think about more diversity with counting of orientation
+    public void generateOrientation() {
         orientationInt = random.nextInt(100);
         if(orientationInt < 50)
             buf = i;

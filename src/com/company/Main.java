@@ -8,6 +8,8 @@ import static com.company.Board.arr;
 
 public class Main {
 
+    static int index;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(250, 250);
@@ -18,15 +20,11 @@ public class Main {
         frame.add(panel);
         panel.setLayout(new GridLayout(10,10));
 
-        ImageIcon imageIcon = new ImageIcon("images/1.png");
-
-        JButton b = new JButton(imageIcon);
-//        b.setSize(50,  50);
-
-
         for (int x = 0; x<10;x++)
-            for(int y=0;y<10;y++)
-                panel.add(new Field().makeBtn(imageIcon));
+            for(int y=0;y<10;y++) {
+                getIndex(x,y);
+                panel.add(new Field(index).makeBtn());
+            }
 
 
 
@@ -52,16 +50,18 @@ public class Main {
 
         board.showBoard();
 
-        String str;
-        int index;
+//        String str;
+
 
         for (int i=0;i<10;i++){
             for (int j=0;j<10;j++){
                 if (arr[i][j] != 0) {
-                    str = "" + i + j;
-                    index = Integer.parseInt(str);
-                    panel.remove(index);
-                    panel.add(new JButton(new ImageIcon("images/2.png")), index);
+//                    str = "" + i + j;
+//                    index = Integer.parseInt(str);
+                    getIndex(i,j);
+//                    panel.remove(index);
+//                    panel.add(new JButton(new ImageIcon("images/2.png")), index);
+                    panel.
                 }
             }
         }
@@ -72,5 +72,11 @@ public class Main {
 //        frame.repaint();
 
 
+    }
+
+    public static int getIndex(int i, int j) {
+//        str = "" + i + j;
+        index = Integer.parseInt("" + i + j);
+        return index;
     }
 }
