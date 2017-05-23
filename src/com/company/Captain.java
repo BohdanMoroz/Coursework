@@ -15,7 +15,6 @@ public class Captain {
     public int indexOfShip = 1;
     public int orientationInt;
 
-    public int origin_arg;
     public int start_arg;
     public int end_arg;
 

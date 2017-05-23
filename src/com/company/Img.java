@@ -2,9 +2,6 @@ package com.company;
 
 import javax.swing.*;
 
-/**
- * Created by IMCWDI on 22.05.2017.
- */
 public class Img {
     public static ImageIcon empty = new ImageIcon("images/1.png");
     public static ImageIcon dot = new ImageIcon("images/2.png");

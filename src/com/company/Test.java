@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import static com.company.Board.arr;
 import static com.company.Board.dock;
 import static com.company.Img.getDead;
-import static com.company.Main.getIndex;
 
 public class Test {
-//    public static Dock dock;
     public static void rePaint(ArrayList arrayList){
         for (int p=1; p<=10; p++) {
             if (!arrayList.contains(p)) {
@@ -21,5 +19,9 @@ public class Test {
                 }
             }
         }
+    }
+
+    public static int getIndex(int i, int j) {
+        return Integer.parseInt("" + i + j);
     }
 }

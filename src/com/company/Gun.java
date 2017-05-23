@@ -49,19 +49,21 @@ public class Gun {
                     if (arr[i][j] != 0) {
                         btn.setIcon(getRed());
                         target.remove(Integer.valueOf(arr[i][j]));
-                        enBtn.remove(index);
+                        enBtn.remove(Integer.valueOf(index));
                         System.out.println(target);
                     } else {
                         btn.setIcon(getDot());
                     }
-//                    btn.setEnabled(false);
                     Test.rePaint(target);
+                }
+                if (target.isEmpty()) {
+                    System.out.println("Win!"); //think make better end of the game
                 }
             }
         });
     }
 
-    public static ArrayList<Integer> target = new ArrayList<Integer>();
+    public static ArrayList<Integer> target = new ArrayList<Integer>(20);
     public static void initTarget(){
         target.add(1);
         target.add(1);
