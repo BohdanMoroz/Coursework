@@ -1,139 +1,95 @@
 package com.company;
 
-import java.util.Random;
+import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.company.Board.arr;
+import static com.company.Img.*;
 
 public class Ship {
-    public int counter = 0;
-    public Random random = new Random();
+    public int index;
+    public JButton btn;
 
-    public int i;
-    public int j;
-    public int buf;
-
-    public int indexOfShip = 1;
-    public int orientationInt;
-
-    public int origin_arg;
-    public int start_arg;
-    public int end_arg;
-
-
-
-
-
-    String[] str = new String[10];
-    int c = 0;
-    public void savePosition() {
-        str[c++] = "" + indexOfShip + "|    " + start_arg + "    " + end_arg + "    " + j + "              " + orientationInt;
-    }
-    public void showPosition() {
-        for (c = 0; c < 10; c++)
-            System.out.println(str[c]);
+    Ship(){
+//fixme        initAllSpips(); must be declared only one time
     }
 
-
-
-
-
-    public void build(int number){
-        for(;;) {
-            generatePosition();
-            generateOrientation();
-            if (discoverSpace(number)) {
-                savePosition();
-                fillSpace();
-                break; // return
-            }
-        }
+    public JButton buildShip(int index) {
+        btn = new JButton(getEmpty()); // ???
+        this.index = index;
+        Gun.shoot(btn, index);
+        return btn;
     }
 
-    public void fillSpace() {
-        for (buf = start_arg; buf <= end_arg; buf++) {
-            write();
-        }
-        indexOfShip++;
+//    public int i;
+//    public int j;
+//    String coordinate;
+//    public void getCoordinate(){
+//        coordinate = Integer.toString(index);
+//        if (coordinate.length() == 1) {
+//            i = 0;
+//            j = Integer.parseInt(coordinate);
+//        }
+//        else {
+//            i = Integer.parseInt(coordinate.substring(0,1));
+//            j = Integer.parseInt(coordinate.substring(1,2));
+//        }
+//    }
+
+    // think maybe better make it in Dock.java?
+    public static ArrayList<Integer> arrayList = new ArrayList<Integer>();
+    public void initAllSpips(){
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+
+        arrayList.add(2);
+        arrayList.add(2);
+        arrayList.add(2);
+
+        arrayList.add(3);
+        arrayList.add(3);
+        arrayList.add(3);
+
+        arrayList.add(4);
+        arrayList.add(4);
+
+        arrayList.add(5);
+        arrayList.add(5);
+
+        arrayList.add(6);
+        arrayList.add(6);
+
+        arrayList.add(7);
+
+        arrayList.add(8);
+
+        arrayList.add(9);
+
+        arrayList.add(10);
     }
 
-    public void write(){
-        getOrientation();
-        arr[i][j] = indexOfShip;
-    }
-
-    public boolean discoverSpace(int number) {
-        counter = 0;
-
-        for (; buf < 10; buf++) {
-            if (counter == 1)
-                start_arg = buf-1;
-            if (counter == number) {
-                end_arg = buf-1;
-                return true;
-            }
-            getOrientation();
-            if(isAvailable()) {
-                counter++;
-                continue; // ???
-            }
-            else {
-                counter = 0;
-            }
-        }
-        return false;
-    }
-
-
-    public void generatePosition(){
-        i = random.nextInt(10);
-        j = random.nextInt(10);
-    }
-
-    //think to use enum
-    //think about more diversity with counting of orientation
-    public void generateOrientation() {
-        orientationInt = random.nextInt(100);
-        if(orientationInt < 50)
-            buf = i;
-        else
-            buf = j;
-    }
-
-    public void getOrientation() {
-        if(orientationInt < 50)
-            i = buf;
-        else
-            j = buf;
-    }
-
-    public boolean isAvailable(){
-        if (arr[i][j] != 0) // dot
-            return false;
-
-        if ((j-1 >= 0) && (arr[i][j-1] != 0) && (arr[i][j-1] != indexOfShip)) // left
-            return false;
-
-        if ((j+1 <= 9) && (arr[i][j+1] != 0) && (arr[i][j+1] != indexOfShip)) // right
-            return false;
-
-        if ((i-1 >= 0) && (arr[i-1][j] != 0) && (arr[i-1][j] != indexOfShip)) // top
-            return false;
-
-        if ((i+1 <= 9) && (arr[i+1][j] != 0) && (arr[i+1][j] != indexOfShip)) // bottom
-            return false;
-
-        if ((i-1 >= 0) && (j-1 >= 0) && (arr[i-1][j-1] != 0)) // left_top
-            return false;
-
-        if ((i-1 >= 0) && (j+1 <= 9) && (arr[i-1][j+1] != 0)) // right_top
-            return false;
-
-        if ((i+1 <= 9) && (j-1 >= 0) && (arr[i+1][j-1] != 0)) // left_bottom
-            return false;
-
-        if ((i+1 <= 9) && (j+1 <= 9) && (arr[i+1][j+1] != 0)) // right_bottom
-            return false;
-
-        return true;
-    }
+//Test test = new Test();
+//    public void shoot(){
+//        btn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                getCoordinate();
+//                if (arr[i][j] != 0) {
+//                    btn.setIcon(getRed());
+//                    arrayList.remove(arr[i][j]);
+//                }
+//                else {
+//                    btn.setIcon(getDot());
+//                }
+////                test.rePaint();
+//            }
+//        });
+//    }
 }

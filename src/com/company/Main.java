@@ -11,7 +11,7 @@ import static com.company.Img.getDead;
 public class Main {
 
     static int index;
-    static Field field = new Field();
+//    static Field field = new Field();
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -19,41 +19,24 @@ public class Main {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        frame.add(panel);
-        panel.setLayout(new GridLayout(10,10));
-
-
-
-        for (int x = 0; x<10;x++)
-            for(int y=0;y<10;y++) {
-                getIndex(x,y);
-                panel.add(field.getButton(index));
-            }
-
-
-
+//        JPanel panel = new JPanel();
         Board board = new Board();
+        frame.add(board.fillBoard());
         board.showBoard();
+//        panel.setLayout(new GridLayout(10,10));
 
 
-        Ship ship = new Ship();
 
-        ship.build(4);
+//        for (int x = 0; x<10;x++)
+//            for(int y=0;y<10;y++) {
+//                getIndex(x,y);
+//                panel.add(field.getButton(index));
+//            }
 
-        ship.build(3);
-        ship.build(3);
 
-        ship.build(2);
-        ship.build(2);
-        ship.build(2);
 
-        ship.build(1);
-        ship.build(1);
-        ship.build(1);
-        ship.build(1);
-
-        board.showBoard();
+//        Board board = new Board();
+//        board.showBoard();
 
 //        String str;
 
