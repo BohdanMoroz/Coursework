@@ -1,13 +1,13 @@
 package com.company;
 
-import com.company.computer.Board;
+//import com.company.computer.Board;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.setSize(286, 308);
+        frame.setSize(700, 308);
         frame.setLocationRelativeTo(null);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,9 +20,13 @@ public class Main {
         frame.add(lineUp);
         frame.add(lineLeft);
 
-        Board board = new Board();
-        frame.add(board.fillBoard());
-        board.showBoard();
+
+        com.company.computer.Board boardComputer = new com.company.computer.Board();
+        frame.add(boardComputer.fillBoard());
+        boardComputer.showBoard();
+
+        com.company.player.Board boardPlayer = new com.company.player.Board();
+        frame.add(boardPlayer.fillBoard());
 
         frame.setVisible(true);
     }
