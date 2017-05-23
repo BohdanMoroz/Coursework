@@ -3,9 +3,10 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static com.company.Board.arr;
-import static com.company.Ship.arrayList;
+//import static com.company.Ship.arrayList;
 import static com.company.Img.*;
 
 public class Dock {

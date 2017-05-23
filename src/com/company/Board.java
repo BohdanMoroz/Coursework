@@ -36,7 +36,7 @@ public class Board {
     }
 
     // fixme
-    Dock dock = new Dock();
+    public static Dock dock = new Dock(); //???
     JPanel panel = new JPanel();
     public JPanel fillBoard() {
         panel.setLayout(new GridLayout(10,10));
