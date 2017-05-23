@@ -5,10 +5,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static com.company.Board.arr;
+import static com.company.Btn.arrayList;
+import static com.company.Img.getDead;
 
 public class Main {
 
     static int index;
+    static Field field = new Field();
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -20,10 +23,12 @@ public class Main {
         frame.add(panel);
         panel.setLayout(new GridLayout(10,10));
 
+
+
         for (int x = 0; x<10;x++)
             for(int y=0;y<10;y++) {
                 getIndex(x,y);
-                panel.add(new Field(index).makeBtn());
+                panel.add(field.getButton(index));
             }
 
 
@@ -61,7 +66,7 @@ public class Main {
                     getIndex(i,j);
 //                    panel.remove(index);
 //                    panel.add(new JButton(new ImageIcon("images/2.png")), index);
-                    panel.
+//                    panel.
                 }
             }
         }
@@ -73,6 +78,20 @@ public class Main {
 
 
     }
+
+//    public static void rePaint(){
+//        for (int p=1; p<=10; p++) {
+//            if (!arrayList.contains(p)) {
+//                for (int i=0; i<10; i++) {
+//                    for (int j=0; j<10; j++){
+//                        if (arr[i][j] == p) {
+//                            field.getButton(getIndex(i,j)).setIcon(getDead());
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public static int getIndex(int i, int j) {
 //        str = "" + i + j;
