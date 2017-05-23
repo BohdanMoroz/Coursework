@@ -1,8 +1,6 @@
-package com.company;
+package com.company.computer;
 
 import java.util.Random;
-
-import static com.company.Board.arr;
 
 public class Captain {
     public int counter = 0;
@@ -57,7 +55,7 @@ public class Captain {
 
     public void write(){
         getOrientation();
-        arr[i][j] = indexOfShip;
+        Board.arr[i][j] = indexOfShip;
     }
 
     public boolean discoverSpace(int number) {
@@ -106,31 +104,31 @@ public class Captain {
     }
 
     public boolean isAvailable(){
-        if (arr[i][j] != 0) // dot
+        if (Board.arr[i][j] != 0) // dot
             return false;
 
-        if ((j-1 >= 0) && (arr[i][j-1] != 0) && (arr[i][j-1] != indexOfShip)) // left
+        if ((j-1 >= 0) && (Board.arr[i][j-1] != 0) && (Board.arr[i][j-1] != indexOfShip)) // left
             return false;
 
-        if ((j+1 <= 9) && (arr[i][j+1] != 0) && (arr[i][j+1] != indexOfShip)) // right
+        if ((j+1 <= 9) && (Board.arr[i][j+1] != 0) && (Board.arr[i][j+1] != indexOfShip)) // right
             return false;
 
-        if ((i-1 >= 0) && (arr[i-1][j] != 0) && (arr[i-1][j] != indexOfShip)) // top
+        if ((i-1 >= 0) && (Board.arr[i-1][j] != 0) && (Board.arr[i-1][j] != indexOfShip)) // top
             return false;
 
-        if ((i+1 <= 9) && (arr[i+1][j] != 0) && (arr[i+1][j] != indexOfShip)) // bottom
+        if ((i+1 <= 9) && (Board.arr[i+1][j] != 0) && (Board.arr[i+1][j] != indexOfShip)) // bottom
             return false;
 
-        if ((i-1 >= 0) && (j-1 >= 0) && (arr[i-1][j-1] != 0)) // left_top
+        if ((i-1 >= 0) && (j-1 >= 0) && (Board.arr[i-1][j-1] != 0)) // left_top
             return false;
 
-        if ((i-1 >= 0) && (j+1 <= 9) && (arr[i-1][j+1] != 0)) // right_top
+        if ((i-1 >= 0) && (j+1 <= 9) && (Board.arr[i-1][j+1] != 0)) // right_top
             return false;
 
-        if ((i+1 <= 9) && (j-1 >= 0) && (arr[i+1][j-1] != 0)) // left_bottom
+        if ((i+1 <= 9) && (j-1 >= 0) && (Board.arr[i+1][j-1] != 0)) // left_bottom
             return false;
 
-        if ((i+1 <= 9) && (j+1 <= 9) && (arr[i+1][j+1] != 0)) // right_bottom
+        if ((i+1 <= 9) && (j+1 <= 9) && (Board.arr[i+1][j+1] != 0)) // right_bottom
             return false;
 
         return true;

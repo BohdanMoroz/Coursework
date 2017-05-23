@@ -1,13 +1,9 @@
-package com.company;
+package com.company.computer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import static com.company.Board.arr;
-import static com.company.Img.getDot;
-import static com.company.Img.getRed;
 
 public class Gun {
 
@@ -46,13 +42,13 @@ public class Gun {
             public void actionPerformed(ActionEvent e) {
                 if(enBtn.contains(index)) {
                     getCoordinate(index);
-                    if (arr[i][j] != 0) {
-                        btn.setIcon(getRed());
-                        target.remove(Integer.valueOf(arr[i][j]));
+                    if (Board.arr[i][j] != 0) {
+                        btn.setIcon(Img.getRed());
+                        target.remove(Integer.valueOf(Board.arr[i][j]));
                         enBtn.remove(Integer.valueOf(index));
                         System.out.println(target);
                     } else {
-                        btn.setIcon(getDot());
+                        btn.setIcon(Img.getDot());
                     }
                     Test.rePaint(target);
                 }

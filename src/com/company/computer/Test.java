@@ -1,10 +1,6 @@
-package com.company;
+package com.company.computer;
 
 import java.util.ArrayList;
-
-import static com.company.Board.arr;
-import static com.company.Board.dock;
-import static com.company.Img.getDead;
 
 public class Test {
     public static void rePaint(ArrayList arrayList){
@@ -12,8 +8,8 @@ public class Test {
             if (!arrayList.contains(p)) {
                 for (int i=0; i<10; i++) {
                     for (int j=0; j<10; j++){
-                        if (arr[i][j] == p) {
-                            dock.getShip(getIndex(i,j)).setIcon(getDead());
+                        if (Board.arr[i][j] == p) {
+                            Board.dock.getShip(getIndex(i,j)).setIcon(Img.getDead());
                         }
                     }
                 }

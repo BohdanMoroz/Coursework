@@ -1,8 +1,6 @@
-package com.company;
+package com.company.computer;
 
 import java.util.Random;
-
-import static com.company.Board.arr;
 
 public class Ship_bcp {
     public String way;
@@ -37,10 +35,10 @@ public class Ship_bcp {
     }
 
     public void findLeft(){
-        if (arr[i][j] == 1) {
+        if (Board.arr[i][j] == 1) {
             for (int c1=i-2;c1<i;c1++) {
                 for (int c2=j-1;c2<=j+1;c2++) {
-                    if (arr[c1][c2]==0)
+                    if (Board.arr[c1][c2]==0)
                         continue;
                     else {
                         System.out.println("Err");
@@ -49,7 +47,7 @@ public class Ship_bcp {
                 }
             }
             j--;
-            arr[i][j] = 1;
+            Board.arr[i][j] = 1;
         }
     }
 
@@ -59,10 +57,10 @@ public class Ship_bcp {
         i = random.nextInt(10);
         j = random.nextInt(10);
 
-        if (arr[i][j] == 0) {
+        if (Board.arr[i][j] == 0) {
             for (int c1=i-1;c1<=i+1;c1++) {
                 for (int c2=j-1;c2<=j+1;c2++) {
-                    if (arr[c1][c2]==0)
+                    if (Board.arr[c1][c2]==0)
                         continue;
                     else {
                         System.out.println("Err");
@@ -70,7 +68,7 @@ public class Ship_bcp {
                     }
                 }
             }
-            arr[i][j] = 1;
+            Board.arr[i][j] = 1;
         }
 
     }

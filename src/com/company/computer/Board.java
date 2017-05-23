@@ -1,11 +1,12 @@
-package com.company;
+package com.company.computer;
 
 import javax.swing.*;
 import java.awt.*;
 
+//think about interface
 public class Board {
     public static int[][] arr;
-    Board(){
+    public Board(){
         initBoard();
         setShips();
     }
@@ -38,6 +39,7 @@ public class Board {
     // fixme
     public static Dock dock = new Dock(); //???
     JPanel panel = new JPanel();
+
     public JPanel fillBoard() {
         panel.setLayout(new GridLayout(10,10));
         panel.setBounds(20, 20, 250, 250);

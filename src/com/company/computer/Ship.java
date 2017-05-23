@@ -1,8 +1,6 @@
-package com.company;
+package com.company.computer;
 
 import javax.swing.*;
-
-import static com.company.Img.*;
 
 public class Ship {
     public int index;
@@ -13,7 +11,7 @@ public class Ship {
     }
 
     public JButton buildShip(int index) {
-        btn = new JButton(getEmpty()); // ???
+        btn = new JButton(Img.getEmpty()); // ???
         this.index = index;
         Gun.shoot(btn, index);
         return btn;

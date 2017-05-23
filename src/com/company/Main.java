@@ -1,8 +1,8 @@
 package com.company;
 
+import com.company.computer.Board;
+
 import javax.swing.*;
-import javax.xml.stream.Location;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
