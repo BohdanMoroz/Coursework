@@ -1,13 +1,15 @@
 package com.company;
 
 import javax.swing.*;
+import javax.xml.stream.Location;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(286, 308);
-        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
@@ -22,6 +24,7 @@ public class Main {
         frame.add(board.fillBoard());
         board.showBoard();
 
+        frame.setVisible(true);
     }
 
 }
