@@ -5,21 +5,89 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static com.company.computer.Img.*;
+import static com.company.computer.PlanOfShipPosition.arr;
+
 public class Gun {
 
-    public static int i;
-    public static int j;
-    public static String coordinate;
-    public static ArrayList<Integer> enBtn = new ArrayList<>();
-    public static void initEnableBtn() {
+    private int i;
+    private int j;
+    private String coordinate;
+
+    private ArrayList<Integer> numberOfEmptySector = new ArrayList<>();
+
+    private void initEnableBtn() {
         for (int j=0; j<100; j++)
-            enBtn.add(j); //think ??? outboxing
+            numberOfEmptySector.add(j); //think ??? outboxing
     }
 
+    Gun() {
+        initTarget();
+        initEnableBtn();
+    }
 
+    public void makeClickable(JButton currentSectorBtn, int indexOfCurrentSector, EnemyArea enemyArea
+    ){
+        currentSectorBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(numberOfEmptySector.contains(indexOfCurrentSector)) {
+                    getCoordinate(indexOfCurrentSector);
+                    if (isDeck()) {
+                        destroyDeck(currentSectorBtn, indexOfCurrentSector);
+                    } else {
+                        past(currentSectorBtn);
+                    }
+                    repaint(enemyArea);
+                }
+                if (numberOfTarget.isEmpty()) {
+                    System.out.println("Win!"); //think make better end of the game
+                }
+            }
+        });
+    }
 
-    public static void getCoordinate(int index){
-        coordinate = Integer.toString(index);
+    private void past(JButton currentSectorBtn) {
+        currentSectorBtn.setIcon(getDotIcon());
+    }
+
+    private void destroyDeck(JButton currentSectorBtn, int indexOfCurrentSector){
+        currentSectorBtn.setIcon(getRedIcon());
+        numberOfTarget.remove(Integer.valueOf(arr[i][j]));
+        numberOfEmptySector.remove(Integer.valueOf(indexOfCurrentSector));
+        System.out.println(numberOfTarget);
+    }
+
+    private boolean isDeck(){
+        if (arr[i][j] != 0)
+            return true;
+        else return false;
+    }
+
+    private void markDestroyedShip(EnemyArea enemyArea, int potentialTarget) {
+        for (i=0; i<10; i++) {
+            for (j=0; j<10; j++){
+                if (arr[i][j] == potentialTarget) {
+                    enemyArea.getSector(getIndex(i,j)).setIcon(getDeadIcon());
+                }
+            }
+        }
+    }
+
+    private void repaint(EnemyArea enemyArea){
+        for (int potentialTarget = 1; potentialTarget <= 10; potentialTarget++) {
+            if (!numberOfTarget.contains(potentialTarget)) {
+                markDestroyedShip(enemyArea, potentialTarget);
+            }
+        }
+    }
+
+    private int getIndex(int i, int j) {
+        return Integer.parseInt("" + i + j);
+    }
+
+    private void getCoordinate(int indexOfCurrentSector){
+        coordinate = Integer.toString(indexOfCurrentSector);
         if (coordinate.length() == 1) {
             i = 0;
             j = Integer.parseInt(coordinate);
@@ -30,65 +98,22 @@ public class Gun {
         }
     }
 
-    public static void shoot(JButton btn, int index){ //think about param, if they are similar (duplicate)?
-
-        if(index==0){
-            initTarget();
-            initEnableBtn();
-        }
-
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(enBtn.contains(index)) {
-                    getCoordinate(index);
-                    if (Board.arr[i][j] != 0) {
-                        btn.setIcon(Img.getRed());
-                        target.remove(Integer.valueOf(Board.arr[i][j]));
-                        enBtn.remove(Integer.valueOf(index));
-                        System.out.println(target);
-                    } else {
-                        btn.setIcon(Img.getDot());
-                    }
-                    Test.rePaint(target);
-                }
-                if (target.isEmpty()) {
-                    System.out.println("Win!"); //think make better end of the game
-                }
-            }
-        });
+    private ArrayList<Integer> numberOfTarget = new ArrayList<Integer>(20);
+    private void initTarget(){
+        addTarget(4, 1);
+        addTarget(3, 2);
+        addTarget(3, 3);
+        addTarget(2, 4);
+        addTarget(2, 5);
+        addTarget(2, 6);
+        addTarget(1, 7);
+        addTarget(1, 8);
+        addTarget(1, 9);
+        addTarget(1, 10);
     }
 
-    public static ArrayList<Integer> target = new ArrayList<Integer>(20);
-    public static void initTarget(){
-        target.add(1);
-        target.add(1);
-        target.add(1);
-        target.add(1);
-
-        target.add(2);
-        target.add(2);
-        target.add(2);
-
-        target.add(3);
-        target.add(3);
-        target.add(3);
-
-        target.add(4);
-        target.add(4);
-
-        target.add(5);
-        target.add(5);
-
-        target.add(6);
-        target.add(6);
-
-        target.add(7);
-
-        target.add(8);
-
-        target.add(9);
-
-        target.add(10);
+    private void addTarget(int numberOfDeck, int indexOfShip) {
+        for (int z = 0; z<numberOfDeck; z++)
+            numberOfTarget.add(indexOfShip);
     }
 }
