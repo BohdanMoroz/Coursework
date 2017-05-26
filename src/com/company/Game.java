@@ -2,6 +2,7 @@ package com.company;
 
 
 import com.company.computer.EnemyBoard;
+import com.company.player.PlayerBoard;
 import com.company.player.Sailor;
 
 import javax.swing.*;
@@ -32,7 +33,7 @@ public class Game {
 
 //        enemyBoard.showBoard();
 
-        com.company.player.Board boardPlayer = new com.company.player.Board();
+        PlayerBoard boardPlayer = new PlayerBoard();
         p2 = boardPlayer.fillBoard();
         frame.add(p2);
 

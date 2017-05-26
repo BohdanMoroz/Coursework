@@ -1,5 +1,7 @@
 package com.company.computer;
 
+import com.company.computer.EnemyArea;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,8 +34,8 @@ public class Gun {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(numberOfEmptySector.contains(indexOfCurrentSector)) {
-                    getCoordinate(indexOfCurrentSector);
-                    if (isDeck()) {
+                    setCoordinate(indexOfCurrentSector);
+                    if (isDeck()) { //think ternar*
                         destroyDeck(currentSectorBtn, indexOfCurrentSector);
                     } else {
                         past(currentSectorBtn);
@@ -86,7 +88,7 @@ public class Gun {
         return Integer.parseInt("" + i + j);
     }
 
-    private void getCoordinate(int indexOfCurrentSector){
+    private void setCoordinate(int indexOfCurrentSector){
         coordinate = Integer.toString(indexOfCurrentSector);
         if (coordinate.length() == 1) {
             i = 0;
