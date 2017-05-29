@@ -13,14 +13,15 @@ import static com.company.computer.PlanOfShipPosition.arr;
 
 public class Gun {
 
-    private int i;
-    private int j;
+    private int i; // [VM:High] Should have meaningfull name
+    private int j; // [VM:High] Should have meaningfull name
     private String coordinate;
 
-    private ArrayList<Integer> numberOfEmptySector = new ArrayList<>();
+    private ArrayList<Integer> numberOfEmptySector = new ArrayList<>(); // [VM:MIddle] "numberOfEmptySector" means single value. Probably better to use name as "EmptySectors" or "idOfEmptySectors"
 
     private void initEnableBtn() {
-        for (int j=0; j<100; j++)
+        // [VM:High] Iterators should be used only for iteration
+        for (int j=0; j<100; j++) // [VM:High] "100" should be constant
             numberOfEmptySector.add(j); //think ??? outboxing
     }
 
@@ -29,7 +30,7 @@ public class Gun {
         initEnableBtn();
     }
 
-    Fire fire = new Fire();
+    Fire fire = new Fire(); // [VM:High] All fields should be decared together. Move to top
     public void makeClickable(JButton currentSectorBtn, int indexOfCurrentSector, EnemyArea enemyArea
     ){
         currentSectorBtn.addActionListener(new ActionListener() {
@@ -52,6 +53,7 @@ public class Gun {
         });
     }
 
+    // [VM:Middle] Should be more meaningfull name
     private void past(JButton currentSectorBtn) {
         currentSectorBtn.setIcon(getDotIcon());
     }
@@ -59,19 +61,22 @@ public class Gun {
     private void destroyDeck(JButton currentSectorBtn, int indexOfCurrentSector){
         currentSectorBtn.setIcon(getRedIcon());
         numberOfTarget.remove(Integer.valueOf(arr[i][j]));
-        arr[i][j] = arr[i][j] + "d";
+        arr[i][j] = arr[i][j] + "d"; // [VM:Middle] Suspicious logic. Has to be refactored
         numberOfEmptySector.remove(Integer.valueOf(indexOfCurrentSector)); //indexOfCurrentSector
 //        System.out.println(numberOfTarget);
     }
 
     private boolean isDeck(){
-        if (!arr[i][j].equals("0") && !arr[i][j].equals(arr[i][j]+"d")) {
+        // [VM:High] Instead of using "d" and so on, better to create simple class with necessary field for status. One block = 1 instance of the class
+        // [VM:Low] Changed to simplier logic
+        /*if (!arr[i][j].equals("0") && !arr[i][j].equals(arr[i][j]+"d")) {
             return true;
         }
-        else return false;
+        else return false;*/
+        return !arr[i][j].equals("0") && !arr[i][j].equals(arr[i][j]+"d");
     }
 
-    private void markDestroyedShip(EnemyArea enemyArea, int potentialTarget) {
+    private void markDestroyedShip(EnemyArea enemyArea, int potentialTarget) { // [VM:Middle] int can not be as target. Better is rename to "..index" or create specific class
         for (i=0; i<10; i++) {
             for (j=0; j<10; j++){
                 if (arr[i][j].equals(Integer.toString(potentialTarget) + "d")) {
@@ -89,11 +94,12 @@ public class Gun {
         }
     }
 
+    // [VM:High] duplicated logic
     private int getIndex(int i, int j) {
         return Integer.parseInt("" + i + j);
     }
 
-    private void setCoordinate(int indexOfCurrentSector){
+    private void setCoordinate(int indexOfCurrentSector){  // [VM:High] Methods "set...." and "get..." are setters and getters. Better to use another prefixes
         coordinate = Integer.toString(indexOfCurrentSector);
         if (coordinate.length() == 1) {
             i = 0;
