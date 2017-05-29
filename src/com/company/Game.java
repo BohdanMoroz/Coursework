@@ -2,10 +2,13 @@ package com.company;
 
 
 import com.company.computer.EnemyBoard;
+import com.company.player.Fire;
 import com.company.player.PlayerBoard;
 import com.company.player.Sailor;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Game {
 
@@ -33,12 +36,40 @@ public class Game {
 
 //        enemyBoard.showBoard();
 
-        PlayerBoard boardPlayer = new PlayerBoard();
-        p2 = boardPlayer.fillBoard();
+        PlayerBoard playerBoard = new PlayerBoard();
+        p2 = playerBoard.getPanel();
         frame.add(p2);
 
 
+
+
+//        Fire fire = new Fire();
+//        Timer timer = new Timer(2000, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                fire.shoot();
+//            }
+//        });
+//        timer.start();
+
         frame.setVisible(true);
+
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+//        fire.shoot();
+
 
 
 //        start();
@@ -55,9 +86,9 @@ public class Game {
     }
 
     public static void start(){
-        while (!Sailor.target.isEmpty()){
+//        while (!Sailor.target.isEmpty()){
             disable(p1);
-        }
+//        }
         enable(p1);
     }
 

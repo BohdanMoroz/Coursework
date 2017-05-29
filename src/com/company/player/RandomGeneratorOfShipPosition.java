@@ -1,4 +1,4 @@
-package com.company.computer;
+package com.company.player;
 
 import java.util.Random;
 

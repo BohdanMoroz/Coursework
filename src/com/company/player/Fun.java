@@ -1,17 +1,15 @@
-package com.company.computer;
+package com.company.player;
 
-import com.company.computer.EnemyArea;
-import com.company.player.Fire;
-
+import java.util.ArrayList;
+import com.company.player.PlayerArea;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import static com.company.computer.Img.*;
-import static com.company.computer.PlanOfShipPosition.arr;
+import static com.company.player.Img.*;
+import static com.company.player.PlanOfShipPosition.arr;
 
-public class Gun {
+public class Fun {
 
     private int i;
     private int j;
@@ -24,13 +22,12 @@ public class Gun {
             numberOfEmptySector.add(j); //think ??? outboxing
     }
 
-    Gun() {
+    Fun() {
         initTarget();
         initEnableBtn();
     }
 
-    Fire fire = new Fire();
-    public void makeClickable(JButton currentSectorBtn, int indexOfCurrentSector, EnemyArea enemyArea
+    public void makeClickable(JButton currentSectorBtn, int indexOfCurrentSector, PlayerArea playerArea
     ){
         currentSectorBtn.addActionListener(new ActionListener() {
             @Override
@@ -42,12 +39,11 @@ public class Gun {
                     } else {
                         past(currentSectorBtn);
                     }
-                    repaint(enemyArea);
+                    repaint(playerArea);
                 }
                 if (numberOfTarget.isEmpty()) {
                     System.out.println("Win!"); //think make better end of the game
                 }
-                fire.zzz();
             }
         });
     }
@@ -59,32 +55,30 @@ public class Gun {
     private void destroyDeck(JButton currentSectorBtn, int indexOfCurrentSector){
         currentSectorBtn.setIcon(getRedIcon());
         numberOfTarget.remove(Integer.valueOf(arr[i][j]));
-        arr[i][j] = arr[i][j] + "d";
-        numberOfEmptySector.remove(Integer.valueOf(indexOfCurrentSector)); //indexOfCurrentSector
-//        System.out.println(numberOfTarget);
+        numberOfEmptySector.remove(Integer.valueOf(indexOfCurrentSector));
+        System.out.println(numberOfTarget);
     }
 
     private boolean isDeck(){
-        if (!arr[i][j].equals("0") && !arr[i][j].equals(arr[i][j]+"d")) {
+        if (!arr[i][j].equals("0"))
             return true;
-        }
         else return false;
     }
 
-    private void markDestroyedShip(EnemyArea enemyArea, int potentialTarget) {
+    private void markDestroyedShip(PlayerArea playerArea, int potentialTarget) {
         for (i=0; i<10; i++) {
             for (j=0; j<10; j++){
-                if (arr[i][j].equals(Integer.toString(potentialTarget) + "d")) {
-                    enemyArea.getSector(getIndex(i,j)).setIcon(getDeadIcon());
+                if (arr[i][j].equals(Integer.toString(potentialTarget))) {
+                    playerArea.getSector(getIndex(i,j)).setIcon(getDeadIcon());
                 }
             }
         }
     }
 
-    private void repaint(EnemyArea enemyArea){
+    private void repaint(PlayerArea playerArea){
         for (int potentialTarget = 1; potentialTarget <= 10; potentialTarget++) {
             if (!numberOfTarget.contains(potentialTarget)) {
-                markDestroyedShip(enemyArea, potentialTarget);
+                markDestroyedShip(playerArea, potentialTarget);
             }
         }
     }

@@ -9,6 +9,7 @@ public class PlayerBoard {
 
     public PlayerBoard(){
         planOfShipPosition = new PlanOfShipPosition();
+        playerArea = new PlayerArea(); //???
         initPanel();
         fillPanel();
     }
@@ -19,7 +20,7 @@ public class PlayerBoard {
         panel.setBounds(420, 20, 250, 250);
     }
 
-    private PlayerArea playerArea = new PlayerArea(); //???
+    private PlayerArea playerArea; //???
 
 
     private void fillPanel() {

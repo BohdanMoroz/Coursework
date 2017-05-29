@@ -3,29 +3,29 @@ package com.company.player;
 import javax.swing.*;
 
 public class Img {
-    public static ImageIcon empty = new ImageIcon("images/1.png");
-    public static ImageIcon dot = new ImageIcon("images/2.png");
-    public static ImageIcon dead = new ImageIcon("images/3.png");
-    public static ImageIcon green = new ImageIcon("images/4.png");
-    public static ImageIcon red = new ImageIcon("images/5.png");
+    private static ImageIcon empty = new ImageIcon("images/1.png");
+    private static ImageIcon dot = new ImageIcon("images/2.png");
+    private static ImageIcon dead = new ImageIcon("images/3.png");
+    private static ImageIcon green = new ImageIcon("images/4.png");
+    private static ImageIcon red = new ImageIcon("images/5.png");
 
-    public static ImageIcon getEmpty() {
+    public static ImageIcon getEmptyIcon() {
         return empty;
     }
 
-    public static ImageIcon getDot() {
+    public static ImageIcon getDotIcon() {
         return dot;
     }
 
-    public static ImageIcon getDead() {
+    public static ImageIcon getDeadIcon() {
         return dead;
     }
 
-    public static ImageIcon getGreen() {
+    public static ImageIcon getGreenIcon() {
         return green;
     }
 
-    public static ImageIcon getRed() {
+    public static ImageIcon getRedIcon() {
         return red;
     }
 }
