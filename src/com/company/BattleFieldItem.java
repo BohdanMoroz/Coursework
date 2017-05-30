@@ -1,28 +1,26 @@
 package com.company;
 
 public abstract class BattleFieldItem {
-    boolean isDeck;
-    boolean isChecked;
+    boolean deck;
+    boolean checked;
 
     public void init() {
-        setDeck(false);
-        setChecked(false);
     }
 
     public boolean isDeck() {
-        return isDeck;
+        return deck;
     }
 
     public void setDeck(boolean deck) {
-        isDeck = deck;
+        this.deck = deck;
     }
 
     public boolean isChecked() {
-        return isChecked;
+        return checked;
     }
 
     public void setChecked(boolean checked) {
-        isChecked = checked;
+        this.checked = checked;
     }
 
     public void shoot() {

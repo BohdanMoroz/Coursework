@@ -19,6 +19,14 @@ public class ButtonBFI extends BattleFieldItem{
     }
 
     public void render() {
-
+        if (isChecked()) {
+            if (isDeck()) {
+                // малюємо картинку підбитої палуби
+                setChecked(true);
+            } else {
+                // малюємо картинку промаху (крапка)
+                setChecked(true);
+            }
+        }
     }
 }
