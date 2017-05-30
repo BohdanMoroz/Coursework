@@ -4,7 +4,6 @@ package com.company;
 import com.company.computer.EnemyBoard;
 import com.company.player.Fire;
 import com.company.player.PlayerBoard;
-import com.company.player.Sailor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
