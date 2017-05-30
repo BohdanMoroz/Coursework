@@ -11,10 +11,11 @@ import java.awt.event.ActionListener;
 
 public class Game {
 
-    public static JPanel p1;
-    public static JPanel p2;
+    public static JPanel p1; // [VM:High] Should be meaningfull name
+    public static JPanel p2; // [VM:High] Should be meaningfull name
 
     public static void main(String[] args) {
+        // [VM:High] One big complicated method should be splitted to multiple smaller methods with meaningfull names
         JFrame frame = new JFrame();
         frame.setSize(700, 308);
         frame.setLocationRelativeTo(null);
@@ -74,6 +75,7 @@ public class Game {
 //        start();
     }
 
+    // [VM:Middle] Methods "disable" and "enable" are duplicated. You can create single method like "changeEnable" with parameters JPanel panel and boolean enabled
     public static void disable(JPanel panel) {
         for (int i=0; i<100; i++)
             panel.getComponent(i).setEnabled(false);
@@ -84,6 +86,7 @@ public class Game {
             panel.getComponent(i).setEnabled(true);
     }
 
+    // [VM:Middle] Code should be formatted
     public static void start(){
 //        while (!Sailor.target.isEmpty()){
             disable(p1);
